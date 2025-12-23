@@ -1,14 +1,28 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 
 
 const SmartToDo = () => {
   const today = new Date().toLocaleDateString();
+  const[name,setName]=useState("");
   const [task,setTask]=useState("");
   const [addTasks,setAddTasks]=useState([]);
 
   const totalTasks = addTasks.length;
 const completedTasks = addTasks.filter(task => task.completed).length;
 const pendingTasks = addTasks.filter(task => !task.completed).length;
+
+// useEffect(()=>
+//   setName(localStorage.getItem("name"))
+// )
+useEffect(() => {
+  const name = localStorage.getItem("name");
+  if (name) {
+    setName(name);
+  }
+}, []);
+
+
+
 
     const handleAddTask = () => {
     if (task.trim() === "") return;
@@ -47,7 +61,7 @@ const pendingTasks = addTasks.filter(task => !task.completed).length;
           
         <div className='text-6xl text-black'>Smart ToDo</div>
         <div className='flex gap-6'>
-        <div className='text-4xl text-black mt-4'>Hello !</div>
+        <div className='text-4xl text-black mt-4'>Hello ! {name}  </div>
         <div className="text-4xl text-black mt-4">Today: {today}</div>
         </div>
 

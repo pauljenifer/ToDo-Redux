@@ -30,6 +30,7 @@ const SmartToDo = () => {
     setError(newError);
 
     if (Object.keys(newError).length === 0) {
+      localStorage.setItem("name",name);
       navigate("/todo", { state: { name } });
     }
   };
